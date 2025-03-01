@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поймай подарок!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .gift {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('https://cdn-icons-png.flaticon.com/512/616/616489.png') no-repeat center/cover;
+            border: 2px solid black;
+            cursor: pointer;
+            left: 50px;  /* Теперь подарок сразу виден */
+            top: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+        }
+        .heart {
+            width: 100px;
+            height: 100px;
+            background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/cover;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Нажми на подарок 10 раз!</h1>
+    <div id="gift" class="gift"></div>
+    <div id="message" class="message hidden">Сүйікті кураторыма!  
+
+Сізге шын жүректен алғысымды білдіремін! Әрқашан қолдау көрсетіп, түсіністікпен қарап, көмектескеніңіз үшін үлкен рақмет. Сіздің жанашырлығыңыз бен қамқорлығыңыз мен үшін өте маңызды болды. Еңбегіңіз жемісті болып, барлық жақсылық өзіңізге еселеніп қайтсын!
+
+Аянадан<3!</div>
+    <div id="heart" class="heart hidden"></div> <!-- Изображение сердца -->
+
+    <script>
+        let clickCount = 0;
+        const maxClicks = 10;
+        const gift = document.getElementById("gift");
+        const message = document.getElementById("message");
+        const heart = document.getElementById("heart");
+
+        function moveGift() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+            gift.style.left = x + "px";
+            gift.style.top = y + "px";
+        }
+
+        gift.addEventListener("click", () => {
+            clickCount++;
+            if (clickCount >= maxClicks) {
+                gift.classList.add("hidden");
+                message.classList.remove("hidden");
+                heart.classList.remove("hidden"); // Показываем сердце
+            } else {
+                moveGift();
+            }
+        });
+
+        moveGift(); // Перемещение в первый раз
+    </script>
+
+</body>
+</html>
